@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/instagram_like_heart_love_icon_181629.png" type="image/x-icon">
+    <title>Valentine's Day</title>
+    <style>
+        /* Estilos específicos para los botones */
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            /* Espacio entre los dos botones */
+            margin-top: 30px;
+        }
+
+        #btn-no {
+            background-color: #4d0000;
+            /* Color gris para el "No" */
+            position: relative;
+            z-index: 1000;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="greetings">
+        <span>H</span>
+        <span>O</span>
+        <span>L</span>
+        <span>A</span>
+    </div>
+
+    <div class="greetings">
+        <span>A</span>
+        <span>M</span>
+        <span>O</span>
+        <span>R</span>
+    </div>
+
+    <div class="description">
+        <span>¿Quieres ser mi San Valentin?🥹💘</span>
+    </div>
+
+    <div class="button">
+        <button class="botones">
+            <a href="flower.html" style="color: #fff;">SI🥰</a>
+        </button>
+
+        <button id="btn-no" class="botones" style="color: #fff;">
+            NO💔
+        </button>
+    </div>
+
+    <script>
+        const btnNo = document.getElementById('btn-no');
+
+        const huyeBoton = () => {
+            // Obtiene dimensiones de la ventana
+            const width = window.innerWidth - btnNo.offsetWidth;
+            const height = window.innerHeight - btnNo.offsetHeight;
+
+            // Genera coordenadas aleatorias
+            const x = Math.random() * width;
+            const y = Math.random() * height;
+
+            // Aplica la posición fixed para que se mueva por toda la pantalla libremente
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
+        };
+
+        // Eventos para activar la huida
+        btnNo.addEventListener('mouseover', huyeBoton); // Para computadoras
+        // Falling Hearts and Flowers Effect
+        const createFallingElement = () => {
+            const element = document.createElement('div');
+            element.classList.add('falling-element');
+
+            // Randomly decide between heart and flower
+            const isHeart = Math.random() > 0.5;
+            element.innerHTML = isHeart ? '❤️' : '🌸';
+
+            // Randomize properties
+            element.style.left = Math.random() * 100 + 'vw';
+            element.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4-7 seconds
+            element.style.fontSize = Math.random() * 20 + 20 + 'px'; // 20-40px
+            element.style.opacity = Math.random() * 0.5 + 0.3; // 0.3-0.8 opacity
+
+            document.body.appendChild(element);
+
+            // Remove after animation
+            setTimeout(() => {
+                element.remove();
+            }, 7000);
+        };
+
+        setInterval(createFallingElement, 300); // Create new element every 300ms
+
+        btnNo.addEventListener('touchstart', (e) => {   // Para celulares
+            e.preventDefault();
+            huyeBoton();
+        });
+    </script>
+</body>
+
+</html>
